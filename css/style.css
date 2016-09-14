@@ -1,0 +1,291 @@
+@charset "UTF-8";
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a, a:focus, a:active, a:visited {
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+.white-bg {
+    background: #fff !important;
+}
+
+body {
+    background: beige;
+    font-family: -apple-system-font,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+
+.num {
+    font-family: 'Impact';
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
+    min-width: 300px;
+    max-width: 700px;
+}
+.container .footer {
+    height: 4rem;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+}
+.container .footer .info {
+    height: 3rem;
+    overflow: hidden;
+}
+.container .footer .info .logo-box {
+    float: left;
+    line-height: 3rem;
+    width: 50%;
+    font-size: 0.7rem;
+    color: #666;
+}
+.container .footer .info .logo-box .logo {
+    width: 2rem;
+    margin: 0.5rem 0.2rem 0 0.8rem;
+    float: left;
+}
+.container .footer .info .logo-box p {
+    float: left;
+}
+.container .footer .copyright {
+    text-align: center;
+    font-size: 0.4rem;
+    color: #999;
+}
+.container .header {
+    display: none;
+}
+.container .btn {
+    display: block;
+    width: 4.5rem;
+    height: 1.54rem;
+    float: right;
+    margin: 0.8rem 0.8rem 0 0;
+    background: url(../images/share-bg-shadow.png) center bottom no-repeat;
+    background-size: 100%;
+    padding-bottom: 0.2rem;
+}
+.container .btn span {
+    display: block;
+    line-height: 1.4rem;
+    height: 1.4rem;
+    font-size: 0.7rem;
+    text-align: center;
+    background: #ffd600;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.report-content .map-img {
+    width: 100%;
+}
+.report-content .map-container, .report-content .map-filter {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    min-width: 300px;
+    max-width: 700px;
+    background-color: #033447;
+    background: #033447;
+}
+.report-content .map-container .amap-logo, .report-content .map-container .amap-copyright {
+    display: none;
+}
+.report-content .map-filter {
+    background: #033447;
+    z-index: 9;
+    display: block;
+}
+.report-content .map-filter .loading {
+    width: 3rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -80%);
+    -moz-transform: translate(-50%, -80%);
+    -ms-transform: translate(-50%, -80%);
+    -o-transform: translate(-50%, -80%);
+    transform: translate(-50%, -80%);
+}
+.report-content .map-filter .error-msg {
+    display: none;
+    width: 300px;
+    text-align: center;
+    color: #ff7500;
+    font-size: 0.6rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+.report-content .pointImg {
+    position: absolute;
+    z-index: 99;
+    display: none;
+}
+.report-content .info-box {
+    position: absolute;
+    margin: 1rem 0 0 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    height: 2.2rem;
+    border-radius: 1.1rem 5px 5px 1.1rem;
+    line-height: 1.4;
+    padding-right: 0.4rem;
+    z-index: 999;
+    transition: margin 0.4s;
+    -webkit-transition: margin 0.4s;
+}
+.report-content .info-box .avatar {
+    width: 2rem;
+    height: 2rem;
+    float: left;
+    border: 0.1rem solid #fff;
+    border-radius: 50%;
+}
+.report-content .info-box p {
+    padding-left: 2.5rem;
+    white-space: nowrap;
+    opacity: .8;
+}
+.report-content .info-box p.name {
+    color: #fff;
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+}
+.report-content .info-box p.time {
+    font-size: 0.5rem;
+    color: #dddddd;
+}
+.report-content .info-box.landscape {
+    height: 2rem;
+    border-radius: 1rem 5px 5px 1rem;
+    margin: 0.3rem 0 0 1rem;
+    background: black;
+}
+.report-content .info-box.landscape .avatar {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.report-content .info-box.landscape p.name {
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
+}
+.report-content .info-box.landscape p.time {
+    font-size: 0.4rem;
+}
+.report-content .detail-box {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+    height: 8rem;
+    overflow: hidden;
+    text-align: center;
+    background-color: #ffde33;
+    padding: 0 1rem;
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    min-width: 300px;
+    max-width: 700px;
+}
+.report-content .detail-box.control {
+    transition: height 0.3s;
+    -webkit-transition: height 0.3s;
+}
+.report-content .detail-box.control.height-hidden {
+    height: 0.5rem;
+}
+.report-content .detail-box.control.height-hidden .detail-control {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+}
+.report-content .detail-box.control .detail-control {
+    opacity: 1;
+    display: inline-block;
+    width: 100%;
+    height: 0.5rem;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    background: url(../images/up-arrow.png) center center no-repeat;
+    background-size: contain;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transition: rotate 0.3s;
+    -webkit-transition: rotate 0.3s;
+}
+.report-content .detail-box .detail-control {
+    opacity: 0;
+}
+.report-content .detail-box .desc {
+    font-size: 0.5rem;
+    margin-top: 0.2rem;
+}
+.report-content .detail-box .total {
+    font-size: 1.2rem;
+    padding: 1rem 0 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    width: 74%;
+    margin: 0 auto 0.5rem;
+}
+.report-content .detail-box .total .num {
+    font-size: 1.6rem;
+}
+.report-content .detail-box .total .num:after {
+    content: '公里';
+    position: absolute;
+    margin-top: 1.1rem;
+    font-size: 0.5rem;
+}
+.report-content .detail-box .metas-box {
+    display: flex;
+    display: -webkit-flex;
+}
+.report-content .detail-box .metas-box .meta {
+    flex: 1;
+    -webkit-flex: 1;
+}
+.report-content .detail-box .desc-metas .num {
+    font-size: 0.9rem;
+}
+.report-content .detail-box .speed-metas {
+    line-height: 0.8rem;
+}
+.report-content .detail-box .speed-metas .meta:first-child {
+    text-align: left;
+}
+.report-content .detail-box .speed-metas .meta:last-child {
+    text-align: right;
+}
+.report-content .detail-box .speed-metas .num {
+    font-size: 0.5rem;
+}
+.report-content .detail-box .speed-metas .desc {
+    font-size: 0.4rem;
+}
+.report-content .detail-box .color-line {
+    height: 0.2rem;
+    margin: 0.4rem 0 0;
+    background-image: -webkit-linear-gradient(to right, #ff0000, #ffff00, #00ff00);
+    background-image: linear-gradient(to right, #ff0000, #ffff00, #00ff00);
+    box-shadow: 0 0 1px #999;
+}
+
+
