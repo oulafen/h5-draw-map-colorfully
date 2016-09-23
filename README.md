@@ -5,7 +5,7 @@
 本次用的方法比较笨, 主要是高德自带的API + H5的canvas.
 ## 轨迹的绘制
 ### 定位和自适应屏幕
-    - 高德自己有绘制轨迹的方法, 虽然只能是单色的, 但可以用它来进行定位和自适应屏幕
+- 高德自己有绘制轨迹的方法, 虽然只能是单色的, 但可以用它来进行定位和自适应屏幕
      ```js
      /** 使用高德地图自带的覆盖方法, 自动定位并缩放, 但不显示 **/
      var polyline = new AMap.Polyline({
@@ -19,9 +19,9 @@
      mapDraw.map.setFitView(); //屏幕自适应
      ```
 ### 不同颜色的轨迹
-     - 使用canvas
-     - 因为轨迹是由点组成的, 每两点之间连起来, 整体的线也就连起来了, 故思路来了, 绘制的时候, 遍历所有的点, 并在相邻的两个点之间绘一条直线
-     - 对于不同的颜色, 则判断下速度, 根据速度值来设置颜色
+ - 使用canvas
+ - 因为轨迹是由点组成的, 每两点之间连起来, 整体的线也就连起来了, 故思路来了, 绘制的时候, 遍历所有的点, 并在相邻的两个点之间绘一条直线
+ - 对于不同的颜色, 则判断下速度, 根据速度值来设置颜色
      ```js
      // 遍历所有的点
      for (var j = 1, pointLen = mapDraw.pointsList.length; j < pointLen; j++) { 
@@ -38,8 +38,8 @@
      }     
      ```
 ### 暂停点的轨迹
-     - 暂停点用虚线, 尝试过使用canvas来实现, 但不尽人意, 所以结合高德地图的api来实现, 而且自带了内部优化, 何乐而不为呢
-     - 首先要知道每一段轨迹中可能有N段暂停, canvas里没有直接画虚线的方法,而在高德地图里有这样的api,什么也不说了,肯定用现成的啊
+ - 暂停点用虚线, 尝试过使用canvas来实现, 但不尽人意, 所以结合高德地图的api来实现, 而且自带了内部优化, 何乐而不为呢
+ - 首先要知道每一段轨迹中可能有N段暂停, canvas里没有直接画虚线的方法,而在高德地图里有这样的api,什么也不说了,肯定用现成的啊
      ```js
      for (var i = 0; i < parsePointsArr.length; i++) {
          var line = new AMap.Polyline({
@@ -55,12 +55,12 @@
      }
      ```
 ### 优化
-    - canvas里可以绘制渐变色, 所以可以不那么生硬, 看对比图
-    不使用渐变: 
-    <img src="http://statics.oulafen.com/github-grd-no.png" style="width:100%;">
-    使用渐变: 
-    <img src="http://statics.oulafen.com/github-grd-use.png" style="width:100%;">
-    (⊙o⊙)…感觉眼要瞎了
+- canvas里可以绘制渐变色, 所以可以不那么生硬, 看对比图
+不使用渐变: 
+<img src="http://statics.oulafen.com/github-grd-no.png" style="width:100%;">
+使用渐变: 
+<img src="http://statics.oulafen.com/github-grd-use.png" style="width:100%;">
+(⊙o⊙)…感觉眼要瞎了
      ```js
      //设置渐变
      startColor = mapDraw.getColor(mapDraw.pointsList[j-1].speed);
