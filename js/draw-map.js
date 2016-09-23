@@ -27,7 +27,7 @@ var mapDraw = {
     colorSteps: 10,
     speedTopStep: 0,
     speedBellowStep: 0,
-    hideBuildingPointRoad: false,
+    hideBuildingPointRoad: true,
     init: function () {
         mapDraw.map = new AMap.Map("map-container", {
             resizeEnable: true,
@@ -35,7 +35,9 @@ var mapDraw = {
             zooms: mapDraw.mapZooms
         });
         $('.map-filter').show();
-        mapDraw.getList(mapDraw.processData);
+
+
+        mapDraw.getList(mapDraw.processData);   //获取轨迹点, 并执行回调来处理
         mapDraw.setFeatures();
     },
 
@@ -53,9 +55,25 @@ var mapDraw = {
             return;
         }
         //获取地图信息
-        var mapData = JSON.parse(data.data);
-        mapDraw.debug = data.debug.status;
-        mapDraw.debug ? console.log('map data->',mapData) : '';
+        var hash = location.search.slice(1).split('=')[1];
+        switch (hash){
+            case 'parse':
+                var mapData = JSON.parse(parse_data.data);
+                break;
+            case 'data1':
+                var mapData = JSON.parse(data1.data);
+                break;
+            case 'data2':
+                var mapData = JSON.parse(data2.data);
+                break;
+            case 'data3':
+                var mapData = JSON.parse(data3.data);
+                break;
+            default :
+                var mapData = JSON.parse(data1.data);
+        }
+
+        console.log('map data->',mapData);
 
         if(!mapData.list.length){
             $('.map-filter .loading').hide();
@@ -63,36 +81,6 @@ var mapDraw = {
             return;
         }
         callback(mapData);
-        //$.ajax({
-        //    type: "get",
-        //    url: 'map/list',
-        //    data: {url: mapListUrl},
-        //    dataType: "json",
-        //    success: function (data) {
-        //        if (data) {
-        //            var mapData = JSON.parse(data.data);
-        //            mapDraw.debug = data.debug.status;
-        //            mapDraw.debug ? console.log('map data->',mapData) : '';
-        //
-        //            if(!mapData.list.length){
-        //                $('.map-filter .loading').hide();
-        //                $('.map-filter .error-msg').html('没有该用户的跑步数据').show();
-        //                return;
-        //            }
-        //            callback(mapData);
-        //        } else {
-        //
-        //            return;
-        //        }
-        //    },
-        //    error: function (error) {
-        //        mapDraw.debug ? console.log('error返回值->',error) : '';
-        //
-        //        $('.map-filter .loading').hide();
-        //        $('.map-filter .error-msg').html('获取的用户地图信息有误').show();
-        //        return;
-        //    }
-        //});
     },
 
     processData: function (data) {
@@ -152,7 +140,7 @@ var mapDraw = {
 
         mapDraw.pointsList.length > 0 ? mapDraw.setPoints() : '';
 
-        mapDraw.map.setFitView();
+        mapDraw.map.setFitView(); //屏幕自适应
     },
 
     drawLine: function () {
@@ -177,6 +165,7 @@ var mapDraw = {
                     parsePointsArr[parseNum].push([mapDraw.pointsList[0].longitude, mapDraw.pointsList[0].latitude]);
                 }
                 if ( mapDraw.pointsList[j - 1] && mapDraw.pointsList[j - 1].speed >= 0) {
+                    /** 上一个点非暂停, 当前点暂停, 则开始记录新的暂停数组 **/
                     parseNum += 1;
                     parsePointsArr[parseNum] = [];
                     parsePointsArr[parseNum].push([mapDraw.pointsList[j - 1].longitude, mapDraw.pointsList[j - 1].latitude]);
@@ -197,7 +186,7 @@ var mapDraw = {
                 context.beginPath();
                 context.moveTo(startX, startY);
                 context.lineTo(endX, endY);
-
+                //设置渐变
                 var grd = context.createLinearGradient(startX, startY, endX, endY);
                 grd.addColorStop(0, startColor);
                 grd.addColorStop(1, endColor);
@@ -205,6 +194,8 @@ var mapDraw = {
                 context.stroke();
             }
         }
+
+        //找到暂停点后绘制虚线
         mapDraw.drawDashedLine(parsePointsArr);
     },
 
