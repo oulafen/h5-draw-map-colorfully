@@ -55,11 +55,11 @@ for (var i = 0; i < parsePointsArr.length; i++) {
 }
 ```
 ### 优化
-- canvas里可以绘制渐变色, 所以可以不那么生硬, 看对比图
-不使用渐变: 
-<img src="http://statics.oulafen.com/github-grd-no.png" style="width:100%;">
-使用渐变: 
-<img src="http://statics.oulafen.com/github-grd-use.png" style="width:100%;">
+- 利用canvas里的渐变色, 可以使两个线段之间的过渡不那么生硬
+
+看对比图
+<img src="http://statics.oulafen.com/github-grd.jpg" style="width:100%;">
+
 (⊙o⊙)…感觉眼要瞎了
 ```js
 //设置渐变
