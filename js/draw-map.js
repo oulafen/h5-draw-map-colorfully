@@ -281,10 +281,10 @@ var mapDraw = {
         }
 
         var markersArg = [{
-            icon: 'images/point-start.png',
+            icon: 'http://statics.oulafen.com/h5_draw_map_color/image/point-start.png',
             position: [mapDraw.pointsList[0].longitude, mapDraw.pointsList[0].latitude]
         }, {
-            icon: 'images/point-end.png',
+            icon: 'http://statics.oulafen.com/h5_draw_map_color/image/point-end.png',
             position: [mapDraw.pointsList[mapDraw.pointsList.length-1].longitude, mapDraw.pointsList[mapDraw.pointsList.length-1].latitude]
         }];
         mapDraw.makers = [];
