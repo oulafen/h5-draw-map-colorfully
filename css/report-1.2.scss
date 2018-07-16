@@ -1,0 +1,243 @@
+@import "base";
+.num{
+    font-family: "AvenirNextBold"
+}
+.report-content{
+    .map-img{
+        width: 100%;
+    }
+    .map-container, .map-filter{
+        width: 100%;
+        height: calc(100% - 9rem);
+        position: absolute;
+        min-width: 300px;
+        background-color: #033447;
+        background: #033447;
+    }
+    .map-container{
+        .amap-logo, .amap-copyright{
+            display: none;
+        }
+    }
+    .kilo-point{
+        background: #fff;
+        font-size: x-small;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 14px;
+        p{
+            -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+            transform-origin: center;
+            -webkit-transform-origin: center;
+            height: 20px;
+        }
+    }
+    .map-filter{
+        background: #033447;
+        z-index: 9;
+        display: block;
+        .loading{
+            width: 3rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -80%);
+            -moz-transform: translate(-50%, -80%);
+            -ms-transform: translate(-50%, -80%);
+            -o-transform: translate(-50%, -80%);
+            transform: translate(-50%, -80%);
+        }
+        .error-msg{
+            display: none;
+            width: 300px;
+            text-align: center;
+            color: #ff7500;
+            font-size: 0.6rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+    }
+    .pointImg{
+        position: absolute;
+        z-index: 99;
+        display: none;
+    }
+    .info-box{
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(0,0,0,0.3);
+        height: 2.2rem;
+        border-radius: 1.1rem;
+        line-height: 1.4;
+        padding-left: 0.4rem;
+        z-index: 999;
+        transition: margin 0.4s;
+        -webkit-transition: margin 0.4s;
+        .avatar{
+            width: 2rem;
+            height: 2rem;
+            float: right;
+            border: 0.1rem solid #fff;
+            border-radius: 50%;
+        }
+        p{
+            padding-right: 2.5rem;
+            white-space: nowrap;
+            text-align: right;
+            &.name{
+                color: #fff;
+                font-size: 0.7rem;
+                margin-top: 0.3rem;
+            }
+            &.time{
+                font-size: 0.5rem;
+                color: rgba(255,255,255,0.8);
+            }
+        }
+        &.landscape{
+            height: 2rem;
+            border-radius: 1rem 1rem;
+            margin: 0.3rem 0 0 1rem;
+            background: rgba(0,0,0,0.3);
+            .avatar{
+                width: 1.8rem;
+                height: 1.8rem;
+            }
+            p.name{
+                font-size: 0.6rem;
+                margin-top: 0.2rem;
+            }
+            p.time{
+                font-size: 0.4rem;
+            }
+        }
+    }
+    .detail-box{
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0;
+        z-index: 999;
+        width: 100%;
+        height: 9rem;
+        overflow: hidden;
+        text-align: center;
+        background-color: #fff;
+        padding: 0 0.5rem;
+        min-width: 300px;
+        color: rgb(74,74,74);   
+        &.control{
+            transition: height 0.3s;
+            -webkit-transition: height 0.3s;
+            &.height-hidden{
+                height: 0.5rem;
+                .detail-control{
+                    transform: rotate(0deg);
+                    -webkit-transform: rotate(0deg);
+                }
+            }
+            .detail-control{
+                opacity: 1;
+                display: inline-block;
+                width: 100%;
+                height: 0.5rem;
+                background: #fff;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 9;
+                background: url(../images/up-arrow-grey.png) center center no-repeat;
+                background-size: contain;
+                transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                transition: rotate 0.3s;
+                -webkit-transition: rotate 0.3s;
+            }
+        }
+        .detail-control{
+            opacity: 0;
+        }
+        .desc{
+            font-size: 0.5rem;
+        }
+        .total{
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgb(235,235,235);
+            margin: 0 auto;
+            .num{
+                font-size: 1.6rem;
+                &:after{
+                    content: '公里';
+                    position: absolute;
+                    margin-top: 1rem;
+                    margin-left: 0.2rem;
+                    font-size: 0.6rem;
+                    color: rgb(74,74,74);
+                }
+            }
+        }
+        .metas-box{
+            display: flex;
+            display: -webkit-flex;
+            .meta{
+                flex: 1;
+                -webkit-flex: 1;
+            }
+        }
+        .desc-metas{
+            margin: 1rem 0;
+            .num{
+                font-size: 0.8rem;
+            }
+        }
+        .speed-metas{
+            line-height: 1.5rem;
+            .meta:first-child{
+                text-align: left;
+            }
+            .meta:last-child{
+                text-align: right;
+            }
+            .num{
+                font-size: 0.6rem;
+            }
+            .desc{
+                font-size: 0.5rem;
+            }
+        }
+        .color-line{
+            height: 0.1rem;
+            margin: 0.4rem 0 0;
+            background-image: -webkit-linear-gradient(to right, rgb(255,63,63),rgb(255,228,0),rgb(13,230,0));
+            background-image: linear-gradient(to right,rgb(255,63,63),rgb(255,228,0),rgb(13,230,0));
+        }
+    }
+}
+
+@media (min-width: 701px){
+    .report-content{
+        .map-container, .map-filter, .detail-box{
+            width: 700px !important;
+        }
+        .info-box{
+            right: 50% !important;
+            margin-right: calc(0.5rem - 350px) !important;
+        }
+    }
+}
+@media screen and (orientation: landscape){
+    .report-content .map-container, .report-content .map-filter{
+        height: 100%;
+    }
+    .report-content .info-box{
+        top: 0.3rem;
+        right: 0.5rem;
+    }
+}

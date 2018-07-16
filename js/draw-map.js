@@ -18,6 +18,7 @@ var mapDraw = {
     minSpeed: 0,
     averageSpeed: 0,
     pointsList: [],
+    kiloPoints: [], //整公里数的点
     canvas: '',
     polylineArr: [],
     mapZooms: [3, 18],
@@ -28,6 +29,7 @@ var mapDraw = {
     speedTopStep: 0,
     speedBellowStep: 0,
     hideBuildingPointRoad: true,
+    kilo_mark: $('.report-content').data('kilomark'),
     init: function () {
         mapDraw.map = new AMap.Map("map-container", {
             resizeEnable: true,
@@ -105,6 +107,8 @@ var mapDraw = {
 
     preProcessList: function () {
         var tmpListArr = [];
+        var kilo = 1;
+        var sum_dis = 0;
         for (var i = 0; i < mapDraw.pointsList.length; i++) {
             var tmp = [];
             var speed = mapDraw.pointsList[i].speed;
@@ -119,6 +123,24 @@ var mapDraw = {
                 mapDraw.minSpeed = speed;
             }
 
+            if(mapDraw.kilo_mark && mapDraw.pointsList[i-1] && mapDraw.pointsList[i].speed >=0){
+                var lnglat = new AMap.LngLat(mapDraw.pointsList[i-1].longitude, mapDraw.pointsList[i-1].latitude);
+                var pre_sum_dis = sum_dis;
+                var sub_dis = lnglat.distance([tmp[0], tmp[1]]);
+                sum_dis += sub_dis;
+
+                if( kilo * 1000 > pre_sum_dis && kilo * 1000 <= sum_dis){
+                    if(sub_dis > 1000){
+                        kilo == 1 ? kilo-- : '';
+                        var sub_kilo = parseInt(sub_dis / 1000);
+                        kilo += sub_kilo;
+                    }
+                    mapDraw.pointsList[i].kilo = kilo;
+                    mapDraw.kiloPoints.push(mapDraw.pointsList[i]);
+                    kilo ++;
+                    console.log('--calculate sum_dis----', sum_dis);
+                }
+            }
             tmpListArr.push(mapDraw.pointsList[i]);
         }
         mapDraw.pointsList = tmpListArr;
@@ -243,6 +265,21 @@ var mapDraw = {
     },
 
     setPoints: function () {
+        mapDraw.makers = [];
+        if(mapDraw.kilo_mark){
+            //添加整公里数
+            for(var i=0; i<mapDraw.kiloPoints.length; i++){
+                var point = mapDraw.kiloPoints[i];
+                var maker = new AMap.Marker({
+                    map: mapDraw.map,
+                    position: [point.longitude, point.latitude],
+                    content: '<div class="kilo-point"><p>'+  point.kilo + '</p></div>',
+                    offset: new AMap.Pixel(-8, -8)
+                });
+                mapDraw.makers.push(maker);
+            }
+        }
+
         var markersArg = [{
             icon: 'images/point-start.png',
             position: [mapDraw.pointsList[0].longitude, mapDraw.pointsList[0].latitude]
