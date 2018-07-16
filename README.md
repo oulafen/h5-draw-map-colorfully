@@ -72,8 +72,8 @@ context.strokeStyle = grd;
 ```
 
 # 预览
-- [正常轨迹10km预览](http://blog.oulafen.com/draw_map_colorfully/index.html?data=data1)
-- [正常轨迹5km预览](http://blog.oulafen.com/draw_map_colorfully/index.html?data=data2)
-- [正常轨迹5.4km预览](http://blog.oulafen.com/draw_map_colorfully/index.html?data=data3)
-- [有暂停的轨迹预览](http://blog.oulafen.com/draw_map_colorfully/index.html?data=parse)
+- [正常轨迹10km预览](https://drawmapcolorfully.coder.oulafen.com?data=data1)
+- [正常轨迹5km预览](https://drawmapcolorfully.coder.oulafen.com?data=data2)
+- [正常轨迹5.4km预览](https://drawmapcolorfully.coder.oulafen.com?data=data3)
+- [有暂停的轨迹预览](https://drawmapcolorfully.coder.oulafen.com?data=parse)
 
